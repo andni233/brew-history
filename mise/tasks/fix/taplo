@@ -1,4 +1,4 @@
 #!/bin/bash
 #MISE description="Reformat TOML files"
 set -euo pipefail
-taplo fmt .mise.toml hugo.toml
+git ls-files -z '*.toml' | xargs -0 taplo fmt

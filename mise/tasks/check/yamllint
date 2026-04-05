@@ -1,4 +1,4 @@
 #!/bin/bash
 #MISE description="Lint YAML files"
 set -euo pipefail
-yamllint .github/
+git ls-files -z '*.yml' '*.yaml' | xargs -0 yamllint
