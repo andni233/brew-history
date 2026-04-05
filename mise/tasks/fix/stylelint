@@ -1,4 +1,4 @@
 #!/bin/bash
 #MISE description="Auto-fix CSS issues"
 set -euo pipefail
-stylelint --fix 'static/css/**/*.css'
+git ls-files -z '*.css' | xargs -0 stylelint --fix
