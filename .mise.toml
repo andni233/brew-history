@@ -1,0 +1,17 @@
+[tools]
+hugo = "0.147.0"
+python = "3.12"
+
+[tasks.import]
+description = "Convert BeerXML recipes to Hugo content files"
+run = "python scripts/import_recipes.py"
+
+[tasks.build]
+description = "Import recipes then build the Hugo site"
+depends = ["import"]
+run = "hugo"
+
+[tasks.serve]
+description = "Import recipes then serve locally"
+depends = ["import"]
+run = "hugo server -D"

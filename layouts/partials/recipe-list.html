@@ -1,0 +1,15 @@
+{{ $recipes := where .Site.RegularPages "Section" "recipes" }}
+{{ if $recipes }}
+<ul class="recipe-list">
+  {{ range sort $recipes "Date" "desc" }}
+  <li class="recipe-list-item">
+    <a href="{{ .RelPermalink }}" class="recipe-list-link">
+      <span class="recipe-list-name">{{ .Params.title }}</span>
+      {{ with .Params.style_name }}<span class="recipe-list-style">{{ . }}</span>{{ end }}
+    </a>
+  </li>
+  {{ end }}
+</ul>
+{{ else }}
+<p>No recipes yet.</p>
+{{ end }}

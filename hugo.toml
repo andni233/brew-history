@@ -1,0 +1,9 @@
+baseURL = "https://andni233.github.io/brew-history/"
+languageCode = "en-us"
+title = "Brew History"
+
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  description = "A personal brewing log"
+  author = "Andreas Nilsson"

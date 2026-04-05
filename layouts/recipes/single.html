@@ -1,0 +1,164 @@
+{{ define "title" }}{{ .Params.title }} | {{ .Site.Title }}{{ end }}
+{{ define "main" }}
+<nav class="breadcrumb">
+  <a href="{{ .Site.Home.RelPermalink }}">&larr; All Recipes</a>
+</nav>
+
+<article class="recipe">
+  <header class="recipe-header">
+    <h1>{{ .Params.title }}</h1>
+    {{ with .Params.style_name }}
+    <p class="recipe-style">
+      {{- . -}}
+      {{ with $.Params.style_category }} &middot; {{ . }}{{ end }}
+      {{ with $.Params.style_guide }}<span class="recipe-style-guide">{{ . }}</span>{{ end }}
+    </p>
+    {{ end }}
+  </header>
+
+  {{ with .Params.notes }}
+  <section>
+    <h2>Description</h2>
+    <p class="recipe-description">{{ . }}</p>
+  </section>
+  {{ end }}
+
+  {{ with .Params.fermentables }}
+  <section>
+    <h2>Fermentables</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Yield</th>
+          <th>Color</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range . }}
+        <tr>
+          <td>{{ .name }}</td>
+          <td>{{ .type }}</td>
+          <td>{{ printf "%.2f" .amount_kg }} kg</td>
+          <td>{{ printf "%.1f" .yield_pct }}%</td>
+          <td>{{ printf "%.1f" .color_ebc }} EBC</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </section>
+  {{ end }}
+
+  {{ with .Params.hops }}
+  <section>
+    <h2>Hops</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Use</th>
+          <th>Time</th>
+          <th>Amount</th>
+          <th>Alpha</th>
+          <th>Form</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range . }}
+        <tr>
+          <td>{{ .name }}</td>
+          <td>{{ .use }}</td>
+          <td>{{ .time_min }} min</td>
+          <td>{{ .amount_g }} g</td>
+          <td>{{ .alpha }}%</td>
+          <td>{{ .form }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </section>
+  {{ end }}
+
+  {{ with .Params.yeasts }}
+  <section>
+    <h2>Yeast</h2>
+    {{ range . }}
+    <div class="yeast-card">
+      <strong>{{ .name }}</strong>
+      {{ with .product_id }}<span class="badge badge-secondary">{{ . }}</span>{{ end }}
+      <ul>
+        <li>Form: {{ .form }}</li>
+        {{ with .display_amount }}<li>Amount: {{ . }}</li>{{ end }}
+        {{ with .attenuation }}<li>Attenuation: {{ . }}%</li>{{ end }}
+        {{ with .laboratory }}<li>Lab: {{ . }}</li>{{ end }}
+      </ul>
+    </div>
+    {{ end }}
+  </section>
+  {{ end }}
+
+  {{ with .Params.miscs }}
+  <section>
+    <h2>Additions</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Use</th>
+          <th>Time</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range . }}
+        <tr>
+          <td>{{ .name }}</td>
+          <td>{{ .use }}</td>
+          <td>{{ .time_min }} min</td>
+          <td>{{ with .display_amount }}{{ . }}{{ else }}{{ .amount }}{{ end }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </section>
+  {{ end }}
+
+  {{ with .Params.mash_steps }}
+  <section>
+    <h2>Mash</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Step</th>
+          <th>Type</th>
+          <th>Temp</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range . }}
+        <tr>
+          <td>{{ .name }}</td>
+          <td>{{ .type }}</td>
+          <td>{{ .step_temp }}&deg;C</td>
+          <td>{{ .step_time }} min</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </section>
+  {{ end }}
+
+  <section>
+    <h2>Fermentation</h2>
+    <ul class="fermentation-info">
+      {{ with .Params.fermentation_stages }}<li>Stages: {{ . }}</li>{{ end }}
+      {{ with .Params.primary_age }}<li>Primary: {{ . }} days{{ with $.Params.primary_temp }} at {{ . }}&deg;C{{ end }}</li>{{ end }}
+    </ul>
+  </section>
+
+
+</article>
+{{ end }}

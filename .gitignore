@@ -1,0 +1,6 @@
+public/
+resources/
+content/recipes/
+__pycache__/
+*.pyc
+.mise.local.toml

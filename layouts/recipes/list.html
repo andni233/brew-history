@@ -1,0 +1,5 @@
+{{ define "title" }}Recipes | {{ .Site.Title }}{{ end }}
+{{ define "main" }}
+<h1>All Recipes</h1>
+{{ partial "recipe-list.html" . }}
+{{ end }}
