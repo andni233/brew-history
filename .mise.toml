@@ -1,17 +1,27 @@
 [tools]
 hugo = "0.147.0"
 python = "3.12"
+ruff = "latest"
+"pipx:mypy" = "latest"
+taplo = "latest"
+"pipx:codespell" = "latest"
+"pipx:yamllint" = "latest"
+node = "lts"
+"npm:stylelint" = "latest"
+shellcheck = "latest"
 
-[tasks.import]
-description = "Convert BeerXML recipes to Hugo content files"
-run = "python scripts/import_recipes.py"
+[tasks.check]
+description = "Run all checkers (lint + format check + type check + spell check)"
+depends = [
+  "check:ruff",
+  "check:mypy",
+  "check:taplo",
+  "check:codespell",
+  "check:yamllint",
+  "check:stylelint",
+  "check:shellcheck",
+]
 
-[tasks.build]
-description = "Import recipes then build the Hugo site"
-depends = ["import"]
-run = "hugo"
-
-[tasks.serve]
-description = "Import recipes then serve locally"
-depends = ["import"]
-run = "hugo server -D"
+[tasks.fix]
+description = "Run all fixers (auto-fix lint + formatting + spelling)"
+depends = ["fix:ruff", "fix:taplo", "fix:codespell"]

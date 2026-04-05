@@ -5,5 +5,5 @@ title = "Brew History"
 disableKinds = ["taxonomy", "term"]
 
 [params]
-  description = "A personal brewing log"
-  author = "Andreas Nilsson"
+description = "A personal brewing log"
+author = "Andreas Nilsson"

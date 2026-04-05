@@ -1,0 +1,4 @@
+#!/bin/bash
+#MISE depends=["import"]
+set -euo pipefail
+hugo

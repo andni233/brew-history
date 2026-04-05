@@ -10,14 +10,14 @@ RECIPES_DIR = pathlib.Path("recipes")
 OUTPUT_DIR = pathlib.Path("content/recipes")
 
 
-def text(el, tag, default=""):
+def text(el: ET.Element, tag: str, default: str = "") -> str:
     child = el.find(tag)
     if child is not None and child.text:
         return child.text.strip()
     return default
 
 
-def floatval(el, tag, default=0.0):
+def floatval(el: ET.Element, tag: str, default: float = 0.0) -> float:
     val = text(el, tag)
     try:
         return float(val)
@@ -25,7 +25,7 @@ def floatval(el, tag, default=0.0):
         return default
 
 
-def intval(el, tag, default=0):
+def intval(el: ET.Element, tag: str, default: int = 0) -> int:
     val = text(el, tag)
     try:
         return int(float(val))
@@ -33,13 +33,13 @@ def intval(el, tag, default=0):
         return default
 
 
-def slug(name):
+def slug(name: str) -> str:
     s = name.lower().replace(" ", "-")
     s = re.sub(r"[^a-z0-9-]", "", s)
     return s
 
 
-def parse_date(date_str):
+def parse_date(date_str: str) -> str:
     if not date_str:
         return datetime.date.today().isoformat()
     for fmt in ("%d %b %y", "%d %b %Y", "%Y-%m-%d"):
@@ -50,7 +50,7 @@ def parse_date(date_str):
     return datetime.date.today().isoformat()
 
 
-def yaml_str(val):
+def yaml_str(val: object) -> str:
     """Safely quote a string value for YAML."""
     if val is None:
         return '""'
@@ -58,7 +58,7 @@ def yaml_str(val):
     return f'"{s}"'
 
 
-def process_recipe(recipe_el):
+def process_recipe(recipe_el: ET.Element) -> str:
     name = text(recipe_el, "NAME")
     date = parse_date(text(recipe_el, "DATE"))
     recipe_type = text(recipe_el, "TYPE")
@@ -80,10 +80,10 @@ def process_recipe(recipe_el):
 
     # Style
     style_el = recipe_el.find("STYLE")
-    style_name     = text(style_el, "NAME")     if style_el is not None else ""
+    style_name = text(style_el, "NAME") if style_el is not None else ""
     style_category = text(style_el, "CATEGORY") if style_el is not None else ""
-    style_guide    = text(style_el, "STYLE_GUIDE") if style_el is not None else ""
-    style_notes    = text(style_el, "NOTES")    if style_el is not None else ""
+    style_guide = text(style_el, "STYLE_GUIDE") if style_el is not None else ""
+    style_notes = text(style_el, "NOTES") if style_el is not None else ""
 
     lines = ["---"]
     lines.append(f"title: {yaml_str(name)}")
@@ -187,7 +187,7 @@ def process_recipe(recipe_el):
     return "\n".join(lines) + "\n"
 
 
-def main():
+def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     xml_files = sorted(RECIPES_DIR.glob("*.xml"))
     if not xml_files:

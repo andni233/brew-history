@@ -1,0 +1,3 @@
+#!/bin/bash
+set -euo pipefail
+taplo check .mise.toml hugo.toml

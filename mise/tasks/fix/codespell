@@ -1,0 +1,3 @@
+#!/bin/bash
+set -euo pipefail
+codespell --write-changes scripts/ layouts/ static/ .github/ README.md CLAUDE.md
