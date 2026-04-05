@@ -98,6 +98,13 @@ h1 {
   font-weight: bold;
 }
 
+.recipe-list-date {
+  font-family: sans-serif;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
 .recipe-list-stats {
   display: flex;
   gap: 1rem;
