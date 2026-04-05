@@ -1,3 +1,4 @@
 #!/bin/bash
+#MISE description="Lint CSS"
 set -euo pipefail
 stylelint 'static/css/**/*.css'

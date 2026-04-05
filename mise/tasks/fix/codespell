@@ -1,3 +1,4 @@
 #!/bin/bash
+#MISE description="Auto-fix spelling"
 set -euo pipefail
 codespell --write-changes scripts/ layouts/ static/ .github/ README.md CLAUDE.md

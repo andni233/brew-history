@@ -1,3 +1,4 @@
 #!/bin/bash
+#MISE description="Format-check TOML files"
 set -euo pipefail
 taplo check .mise.toml hugo.toml

@@ -1,3 +1,4 @@
 #!/bin/bash
+#MISE description="Spell-check source files"
 set -euo pipefail
 codespell scripts/ layouts/ static/ .github/ README.md CLAUDE.md

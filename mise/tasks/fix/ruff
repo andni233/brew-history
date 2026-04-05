@@ -1,4 +1,5 @@
 #!/bin/bash
+#MISE description="Fix Python lint issues and reformat"
 set -euo pipefail
-ruff check --fix scripts/
-ruff format scripts/
+ruff check --fix
+ruff format

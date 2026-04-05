@@ -1,3 +1,4 @@
 #!/bin/bash
+#MISE description="Lint YAML files"
 set -euo pipefail
 yamllint .github/

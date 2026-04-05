@@ -1,4 +1,5 @@
 #!/bin/bash
+#MISE description="Build the Hugo site"
 #MISE depends=["build:import"]
 set -euo pipefail
 hugo

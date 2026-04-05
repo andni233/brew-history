@@ -1,4 +1,5 @@
 #!/bin/bash
+#MISE description="Serve the site locally with drafts"
 #MISE depends=["build:import"]
 set -euo pipefail
 hugo server -D

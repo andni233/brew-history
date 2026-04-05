@@ -12,15 +12,7 @@ shellcheck = "latest"
 
 [tasks.check]
 description = "Run all checkers (lint + format check + type check + spell check)"
-depends = [
-  "check:ruff",
-  "check:mypy",
-  "check:taplo",
-  "check:codespell",
-  "check:yamllint",
-  "check:stylelint",
-  "check:shellcheck",
-]
+depends = ["check:*"]
 
 [tasks.build]
 description = "Import recipes and build the Hugo site"
@@ -28,4 +20,4 @@ depends = ["build:site"]
 
 [tasks.fix]
 description = "Run all fixers (auto-fix lint + formatting + spelling)"
-depends = ["fix:ruff", "fix:taplo", "fix:codespell"]
+depends = ["fix:*"]

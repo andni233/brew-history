@@ -1,3 +1,4 @@
 #!/bin/bash
+#MISE description="Convert BeerXML recipes to Hugo content files"
 set -euo pipefail
 python scripts/import_recipes.py

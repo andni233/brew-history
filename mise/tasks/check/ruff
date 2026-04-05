@@ -1,4 +1,5 @@
 #!/bin/bash
+#MISE description="Lint and format-check Python"
 set -euo pipefail
-ruff check scripts/
-ruff format --check scripts/
+ruff check
+ruff format --check
