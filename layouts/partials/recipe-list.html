@@ -7,7 +7,7 @@
       <span class="recipe-list-name">{{ .Params.title }}</span>
       {{ with .Params.style_name }}<span class="recipe-list-style">{{ . }}</span>{{ end }}
     </a>
-    {{ with .Params.date }}<time class="recipe-list-date">{{ . }}</time>{{ end }}
+    <time class="recipe-list-date">{{ .Date | dateFormat "2 Jan 2006" }}</time>
   </li>
   {{ end }}
 </ul>
