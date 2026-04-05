@@ -115,12 +115,18 @@ h1 {
 }
 
 /* Recipe style line */
+.recipe-header-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .recipe-date {
-  display: block;
   font-family: sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--color-muted);
-  margin-bottom: 0.25rem;
+  white-space: nowrap;
 }
 
 .recipe-style {

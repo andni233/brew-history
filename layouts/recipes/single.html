@@ -6,8 +6,10 @@
 
 <article class="recipe">
   <header class="recipe-header">
-    <h1>{{ .Params.title }}</h1>
-    <time class="recipe-date">{{ .Date | dateFormat "2 Jan 2006" }}</time>
+    <div class="recipe-header-top">
+      <h1>{{ .Params.title }}</h1>
+      <time class="recipe-date">{{ .Date | dateFormat "2 Jan 2006" }}</time>
+    </div>
     {{ with .Params.style_name }}
     <p class="recipe-style">
       {{- . -}}
