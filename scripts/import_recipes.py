@@ -87,7 +87,7 @@ def process_recipe(recipe_el):
 
     lines = ["---"]
     lines.append(f"title: {yaml_str(name)}")
-    lines.append(f"date: {yaml_str(date)}")
+    lines.append(f"date: {date}")
     lines.append(f"recipe_type: {yaml_str(recipe_type)}")
     lines.append(f"brewer: {yaml_str(brewer)}")
     if style_name:
