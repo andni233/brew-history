@@ -33,8 +33,8 @@ Run an individual fixer: `mise run fix:ruff`, `mise run fix:taplo`, `mise run fi
 ### Builders
 
 ```
-mise run build   # import recipes + build site
-mise run serve   # import recipes + local dev server
+mise run build         # import recipes + build site
+mise run build:serve   # import recipes + local dev server
 ```
 
 ## Adding recipes

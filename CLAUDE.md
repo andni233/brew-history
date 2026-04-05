@@ -34,6 +34,10 @@ Run an individual fixer: `mise run fix:ruff`
 
 Imports BeerXML recipes and builds the Hugo site into `public/`.
 
-- `mise run import` — convert `recipes/*.xml` to Hugo content files
-- `mise run build` — import + build
-- `mise run serve` — import + local dev server with drafts (`hugo server -D`)
+| Sub-task | What it does |
+|---|---|
+| `build:import` | Convert `recipes/*.xml` to Hugo content files |
+| `build:site` | Build Hugo site (depends on `build:import`) |
+| `build:serve` | Local dev server with drafts (depends on `build:import`) |
+
+Run an individual builder: `mise run build:serve`

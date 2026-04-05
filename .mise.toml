@@ -22,6 +22,10 @@ depends = [
   "check:shellcheck",
 ]
 
+[tasks.build]
+description = "Import recipes and build the Hugo site"
+depends = ["build:site"]
+
 [tasks.fix]
 description = "Run all fixers (auto-fix lint + formatting + spelling)"
 depends = ["fix:ruff", "fix:taplo", "fix:codespell"]
