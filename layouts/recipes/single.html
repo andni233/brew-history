@@ -7,6 +7,7 @@
 <article class="recipe">
   <header class="recipe-header">
     <h1>{{ .Params.title }}</h1>
+    <time class="recipe-date">{{ .Date | dateFormat "2 Jan 2006" }}</time>
     {{ with .Params.style_name }}
     <p class="recipe-style">
       {{- . -}}

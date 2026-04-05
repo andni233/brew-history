@@ -115,6 +115,14 @@ h1 {
 }
 
 /* Recipe style line */
+.recipe-date {
+  display: block;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  margin-bottom: 0.25rem;
+}
+
 .recipe-style {
   font-family: sans-serif;
   font-size: 0.95rem;
