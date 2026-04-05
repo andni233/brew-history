@@ -38,9 +38,6 @@ a:hover {
 }
 
 .site-name {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
   color: #ffffff;
   font-size: 1.4rem;
   text-decoration: none;
@@ -51,12 +48,6 @@ a:hover {
 .site-name:hover {
   text-decoration: none;
   color: var(--color-accent);
-}
-
-.site-logo {
-  height: 2rem;
-  width: auto;
-  flex-shrink: 0;
 }
 
 /* Main container */

@@ -8,10 +8,7 @@
 </head>
 <body>
   <header class="site-header">
-    <a href="{{ .Site.Home.RelPermalink }}" class="site-name">
-      <img src="{{ "images/logo.svg" | relURL }}" alt="" class="site-logo" aria-hidden="true">
-      {{ .Site.Title }}
-    </a>
+    <a href="{{ .Site.Home.RelPermalink }}" class="site-name">{{ .Site.Title }}</a>
   </header>
   <main class="container">
     {{ block "main" . }}{{ end }}
