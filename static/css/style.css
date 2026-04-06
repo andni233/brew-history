@@ -98,6 +98,16 @@ h1 {
   font-weight: bold;
 }
 
+.recipe-list-swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+  display: inline-block;
+  align-self: center;
+}
+
 .recipe-list-date {
   font-family: sans-serif;
   font-size: 0.85rem;
@@ -208,11 +218,6 @@ h1 {
   margin-bottom: 0.5rem;
 }
 
-.recipe-meta {
-  font-family: sans-serif;
-  font-size: 0.9rem;
-  color: var(--color-muted);
-}
 
 /* Stats grid */
 .stats-grid {
@@ -324,6 +329,84 @@ h1 {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+}
+
+/* Color and bitterness estimates */
+.recipe-estimates {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.estimate {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.9rem;
+}
+
+.beer-swatch {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+  display: block;
+}
+
+.estimate-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+}
+
+.estimate-label {
+  font-family: sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #4a4a4a;
+}
+
+.estimate-value {
+  font-family: sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1.2;
+}
+
+.estimate-hint {
+  font-family: sans-serif;
+  font-size: 0.75rem;
+  color: #4a4a4a;
+  font-style: italic;
+}
+
+.estimate-pending {
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+.ibu-track {
+  width: 120px;
+  height: 5px;
+  background: var(--color-border);
+  border-radius: 3px;
+  margin: 0.2rem 0 0.1rem;
+  overflow: hidden;
+}
+
+.ibu-fill {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: 3px;
 }
 
 /* Footer */

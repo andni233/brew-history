@@ -2,7 +2,7 @@
 hugo = "0.147.0"
 python = "3.12"
 ruff = "latest"
-"pipx:mypy" = "latest"
+uv = "latest"
 taplo = "latest"
 "pipx:codespell" = "latest"
 "pipx:yamllint" = "latest"

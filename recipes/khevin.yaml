@@ -1,0 +1,69 @@
+title: "Khevin"
+date: 2026-04-03
+recipe_type: "All Grain"
+brewers:
+  - "Andreas Nilsson"
+  - "Mikael Eriksson"
+batch_size_l: 23
+pre_ferment_gravity: 1.070
+description: "Spiritual successor to the original Khennethh. The original recipe was lost to time."
+style:
+  name: "Belgian Wit"
+
+fermentables:
+  - name: "BEST Wheat Malt"
+    type: "Grain"
+    amount_kg: 3.0
+    yield_pct: 82.0
+    color_ebc: 5.0
+  - name: "BEST Pilsen Malt"
+    type: "Grain"
+    amount_kg: 3.0
+    yield_pct: 80.5
+    color_ebc: 4.0
+
+hops:
+  - name: "Opal Pellets 2024"
+    alpha: 6.4
+    amount_g: 25
+    use: "Boil"
+    time_min: 60
+    form: "Pellet"
+  - name: "Opal Pellets 2024"
+    alpha: 6.4
+    amount_g: 25
+    use: "Boil"
+    time_min: 30
+    form: "Pellet"
+
+yeasts:
+  - name: "Belgian Wit Ale WLP400 Ekologisk"
+    form: "Liquid"
+    display_amount: "1 vials"
+    attenuation: 76
+    product_id: "WLP400"
+    laboratory: "White Labs"
+
+miscs:
+  - name: "Coriander"
+    use: "Boil"
+    type: "Other"
+    time_min: 10
+    display_amount: "10 g"
+  - name: "Coriander"
+    use: "Boil"
+    type: "Other"
+    time_min: 15
+    display_amount: "8 g"
+  - name: "Wyeast Yeast Nutrient"
+    use: "Boil"
+    type: "Other"
+    time_min: 15
+    display_amount: "1 tsp"
+
+mash_steps:
+  - name: "Mash In"
+    type: "Temperature"
+    step_time: 60
+    step_temp: 67.0
+    end_temp: 67.0

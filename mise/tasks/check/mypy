@@ -1,4 +1,4 @@
 #!/bin/bash
 #MISE description="Type-check Python (strict)"
 set -euo pipefail
-mypy
+uv run --extra dev mypy

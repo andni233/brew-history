@@ -10,19 +10,96 @@
       <h1>{{ .Params.title }}</h1>
       <time class="recipe-date">{{ .Date | dateFormat "2 Jan 2006" }}</time>
     </div>
-    {{ with .Params.style_name }}
+    {{ if or .Params.style .Params.brewers .Params.recipe_type }}
     <p class="recipe-style">
-      {{- . -}}
-      {{ with $.Params.style_category }} &middot; {{ . }}{{ end }}
-      {{ with $.Params.style_guide }}<span class="recipe-style-guide">{{ . }}</span>{{ end }}
+      {{ with .Params.style }}{{- .name -}}{{ with .category }} &middot; {{ . }}{{ end }}{{ with .guide }} <span class="recipe-style-guide">{{ . }}</span>{{ end }}{{ end }}
+      {{ if and .Params.style .Params.brewers }} &middot; {{ end }}
+      {{ with .Params.brewers }}{{ delimit . " & " }}{{ end }}
+      {{ if and (or .Params.style .Params.brewers) .Params.recipe_type }} &middot; {{ end }}
+      {{ with .Params.recipe_type }}{{ . }}{{ end }}
     </p>
+    {{ end }}
+    {{ with .Params.description }}
+    <p class="recipe-description">{{ . }}</p>
     {{ end }}
   </header>
 
   {{ with .Params.notes }}
   <section>
-    <h2>Description</h2>
-    <p class="recipe-description">{{ . }}</p>
+    <h2>Notes</h2>
+    <p>{{ . }}</p>
+  </section>
+  {{ end }}
+
+  {{ if or .Params.est_color_ebc .Params.est_ibu .Params.pre_ferment_gravity }}
+  <section>
+    <h2>Statistics</h2>
+    <div class="recipe-estimates">
+      {{ with .Params.est_color_ebc }}
+      {{ $label := "Straw" }}
+      {{ if ge . 80.0 }}{{ $label = "Black" }}
+      {{ else if ge . 57.0 }}{{ $label = "Dark" }}
+      {{ else if ge . 40.0 }}{{ $label = "Brown" }}
+      {{ else if ge . 26.0 }}{{ $label = "Copper" }}
+      {{ else if ge . 16.0 }}{{ $label = "Amber" }}
+      {{ else if ge . 8.0 }}{{ $label = "Pale" }}
+      {{ end }}
+      <div class="estimate">
+        <span class="beer-swatch" style="background: {{ partial "beer-color-hex.html" . }}"></span>
+        <div class="estimate-body">
+          <span class="estimate-label">Color</span>
+          <span class="estimate-value">{{ . }} EBC</span>
+          <span class="estimate-hint">{{ $label }}</span>
+        </div>
+      </div>
+      {{ end }}
+      {{ with .Params.est_ibu }}
+      {{ $label := "Low" }}
+      {{ if ge . 60.0 }}{{ $label = "Very bitter" }}
+      {{ else if ge . 40.0 }}{{ $label = "Bitter" }}
+      {{ else if ge . 25.0 }}{{ $label = "Medium-high" }}
+      {{ else if ge . 15.0 }}{{ $label = "Moderate" }}
+      {{ end }}
+      <div class="estimate">
+        <div class="estimate-body">
+          <span class="estimate-label">Bitterness</span>
+          <span class="estimate-value">{{ . }} IBU</span>
+          <div class="ibu-track"><div class="ibu-fill" style="width: {{ printf "%.0f" (math.Min 100.0 (mul . 1.25)) }}%"></div></div>
+          <span class="estimate-hint">{{ $label }}</span>
+        </div>
+      </div>
+      {{ end }}
+      {{ with .Params.batch_size_l }}
+      <div class="estimate">
+        <div class="estimate-body">
+          <span class="estimate-label">Batch size</span>
+          <span class="estimate-value">{{ . }} L</span>
+        </div>
+      </div>
+      {{ end }}
+      {{ with .Params.pre_ferment_gravity }}
+      {{ $og := . }}
+      <div class="estimate">
+        <div class="estimate-body">
+          <span class="estimate-label">OG</span>
+          <span class="estimate-value">{{ printf "%.3f" . }}</span>
+        </div>
+      </div>
+      <div class="estimate">
+        <div class="estimate-body">
+          <span class="estimate-label">FG</span>
+          <span class="estimate-value">{{ with $.Params.post_ferment_gravity }}{{ printf "%.3f" . }}{{ else }}&mdash;{{ end }}</span>
+        </div>
+      </div>
+      <div class="estimate">
+        <div class="estimate-body">
+          <span class="estimate-label">ABV</span>
+          <span class="estimate-value">{{ with $.Params.post_ferment_gravity }}{{ printf "%.1f" (mul (sub $og .) 131.25) }}%{{ else }}&mdash;{{ end }}</span>
+        </div>
+      </div>
+      {{ if not $.Params.post_ferment_gravity }}<p class="estimate-pending">FG and ABV are only known once fermentation is complete.</p>{{ end }}
+      {{ end }}
+    </div>
   </section>
   {{ end }}
 
@@ -90,7 +167,6 @@
     {{ range . }}
     <div class="yeast-card">
       <strong>{{ .name }}</strong>
-      {{ with .product_id }}<span class="badge badge-secondary">{{ . }}</span>{{ end }}
       <ul>
         <li>Form: {{ .form }}</li>
         {{ with .display_amount }}<li>Amount: {{ . }}</li>{{ end }}
@@ -153,14 +229,6 @@
     </table>
   </section>
   {{ end }}
-
-  <section>
-    <h2>Fermentation</h2>
-    <ul class="fermentation-info">
-      {{ with .Params.fermentation_stages }}<li>Stages: {{ . }}</li>{{ end }}
-      {{ with .Params.primary_age }}<li>Primary: {{ . }} days{{ with $.Params.primary_temp }} at {{ . }}&deg;C{{ end }}</li>{{ end }}
-    </ul>
-  </section>
 
 
 </article>
