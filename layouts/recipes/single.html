@@ -12,13 +12,16 @@
     </div>
     {{ if or .Params.style .Params.brewers .Params.recipe_type }}
     <p class="recipe-style">
-      {{ with .Params.style }}{{- .name -}}{{ with .category }} &middot; {{ . }}{{ end }}{{ with .guide }} <span class="recipe-style-guide">{{ . }}</span>{{ end }}{{ end }}
-      {{ if and .Params.style .Params.brewers }} &middot; {{ end }}
-      {{ with .Params.brewers }}{{ delimit . " & " }}{{ end }}
-      {{ if and (or .Params.style .Params.brewers) .Params.recipe_type }} &middot; {{ end }}
-      {{ with .Params.recipe_type }}{{ . }}{{ end }}
+      {{- with .Params.style }}{{ .name }}{{ with .category }} &middot; {{ . }}{{ end }}{{ with .guide }} <span class="recipe-style-guide">{{ . }}</span>{{ end }}{{ end -}}
+      {{- if and .Params.style .Params.brewers }} &middot; {{ end -}}
+      {{- with .Params.brewers }}{{ delimit . " & " }}{{ end -}}
+      {{- if and (or .Params.style .Params.brewers) .Params.recipe_type }} &middot; {{ end -}}
+      {{- with .Params.recipe_type }}{{ . }}{{ end -}}
     </p>
     {{ end }}
+    {{ with .Params.style }}{{ with .notes }}
+    <p class="recipe-style-notes">{{ . }}</p>
+    {{ end }}{{ end }}
     {{ with .Params.description }}
     <p class="recipe-description">{{ . }}</p>
     {{ end }}

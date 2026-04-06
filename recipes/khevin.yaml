@@ -6,7 +6,9 @@ brewers:
   - "Mikael Eriksson"
 batch_size_l: 23
 pre_ferment_gravity: 1.070
-description: "Spiritual successor to the original Khennethh. The original recipe was lost to time."
+description: >-
+  Spiritual successor to the original Khennethh.
+  The original recipe was lost to time.
 style:
   name: "Belgian Wit"
 

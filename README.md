@@ -2,6 +2,8 @@
 
 A personal brewing log. Recipes are stored as YAML files in `recipes/` and published as a Hugo site at [andni233.github.io/brew-history](https://andni233.github.io/brew-history/).
 
+Purchase receipts from ingredient suppliers are kept in `receipts/<supplier>/` for reference alongside the recipes.
+
 ## Development
 
 Requires [mise](https://mise.jdx.dev/). Install all tools:

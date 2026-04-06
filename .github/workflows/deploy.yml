@@ -25,6 +25,9 @@ jobs:
         with:
           install: true
 
+      - name: Install Python dependencies
+        run: uv sync --extra dev
+
       - name: Run checkers
         run: mise run check
 
@@ -38,6 +41,9 @@ jobs:
         uses: jdx/mise-action@v2
         with:
           install: true
+
+      - name: Install Python dependencies
+        run: uv sync
 
       - name: Build site
         run: mise run build
