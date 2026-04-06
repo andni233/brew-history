@@ -1,0 +1,4 @@
+#!/bin/bash
+#MISE description="Sync Python dependencies (including dev)"
+set -euo pipefail
+uv sync --extra dev

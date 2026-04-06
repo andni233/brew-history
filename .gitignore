@@ -4,5 +4,6 @@ content/recipes/
 __pycache__/
 *.pyc
 .mypy_cache/
+.venv/
 .mise.local.toml
 *:Zone.Identifier
