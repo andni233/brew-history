@@ -35,6 +35,9 @@ a:hover {
 .site-header {
   background: #1a1a1a;
   padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .site-name {
@@ -48,6 +51,18 @@ a:hover {
 .site-name:hover {
   text-decoration: none;
   color: var(--color-accent);
+}
+
+.site-github {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+
+.site-github:hover {
+  opacity: 1;
 }
 
 /* Main container */
