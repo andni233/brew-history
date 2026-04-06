@@ -7,6 +7,7 @@
       {{ with .Params.est_color_ebc }}<span class="recipe-list-swatch" style="background: {{ partial "beer-color-hex.html" . }}"></span>{{ end }}
       <span class="recipe-list-name">{{ .Params.title }}</span>
       {{ with .Params.style }}<span class="recipe-list-style">{{ .name }}</span>{{ end }}
+      {{ with .Params.status }}<span class="badge badge-{{ . }}">{{ . }}</span>{{ end }}
     </a>
     <time class="recipe-list-date">{{ .Date | dateFormat "2 Jan 2006" }}</time>
   </li>

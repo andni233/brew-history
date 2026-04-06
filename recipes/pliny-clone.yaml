@@ -1,0 +1,123 @@
+title: "Claude the Elder"
+date: 2026-04-06
+status: planning
+recipe_type: "All Grain"
+brewers:
+  - "Andreas Nilsson"
+batch_size_l: 23
+boil_time_min: 90
+pre_ferment_gravity: 1.074
+est_ibu: 100
+est_color_ebc: 12
+description: >-
+  Clone of Russian River Brewing Company's Pliny the Elder, a West Coast
+  Double IPA. Scaled to 23 L from the BYO/Vinnie Cilurzo recipe.
+notes: >-
+  Original recipe uses Warrior and Simcoe hops; these were substituted with
+  Eureka! and Citra, respectively, due to availability at maltmagnus.se.
+  This shifts the hop character from pine/passionfruit to tropical/citrus.
+
+style:
+  name: "Imperial IPA"
+  category: "Double IPA"
+
+fermentables:
+  - name: "BEST Pale Ale"
+    type: "Grain"
+    amount_kg: 7.0
+    yield_pct: 80.0
+    color_ebc: 6.0
+  - name: "Viking Caramel Malt 50"
+    type: "Grain"
+    amount_kg: 0.15
+    yield_pct: 74.0
+    color_ebc: 50.0
+  - name: "Viking Dextrin Malt"
+    type: "Grain"
+    amount_kg: 0.475
+    yield_pct: 78.0
+    color_ebc: 12.0
+  - name: "Dextrose"
+    type: "Sugar"
+    amount_kg: 0.55
+    yield_pct: 100.0
+    color_ebc: 0.0
+
+hops:
+  - name: "Eureka! Pellets 2024"
+    alpha: 16.9
+    amount_g: 87
+    use: "Boil"
+    time_min: 90
+    form: "Pellet"
+  - name: "Chinook Pellets 2025"
+    alpha: 12.5
+    amount_g: 17
+    use: "Boil"
+    time_min: 90
+    form: "Pellet"
+  - name: "Columbus Pellets 2025"
+    alpha: 13.7
+    amount_g: 34
+    use: "Boil"
+    time_min: 45
+    form: "Pellet"
+  - name: "Citra Pellets 2025"
+    alpha: 12.0
+    amount_g: 38
+    use: "Boil"
+    time_min: 30
+    form: "Pellet"
+  - name: "Centennial Pellets 2025"
+    alpha: 9.0
+    amount_g: 78
+    use: "Boil"
+    time_min: 0
+    form: "Pellet"
+  - name: "Citra Pellets 2025"
+    alpha: 12.0
+    amount_g: 34
+    use: "Boil"
+    time_min: 0
+    form: "Pellet"
+  - name: "Columbus Pellets 2025"
+    alpha: 13.7
+    amount_g: 112
+    use: "Dry Hop"
+    time_days: 5
+    form: "Pellet"
+  - name: "Centennial Pellets 2025"
+    alpha: 9.0
+    amount_g: 61
+    use: "Dry Hop"
+    time_days: 5
+    form: "Pellet"
+  - name: "Citra Pellets 2025"
+    alpha: 12.0
+    amount_g: 61
+    use: "Dry Hop"
+    time_days: 5
+    form: "Pellet"
+
+yeasts:
+  - name: "Safale US-05"
+    form: "Dry"
+    display_amount: "2 packets"
+    attenuation: 81
+    temp_min: 18
+    temp_max: 20
+    laboratory: "Fermentis"
+
+miscs:
+  - name: "Irish Moss"
+    use: "Boil"
+    type: "Fining"
+    time_min: 15
+    display_amount: "1 tsp"
+
+mash_steps:
+  - name: "Mash In"
+    type: "Temperature"
+    step_time: 60
+    step_temp: 65.5
+    end_temp: 65.5

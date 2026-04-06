@@ -8,7 +8,10 @@
   <header class="recipe-header">
     <div class="recipe-header-top">
       <h1>{{ .Params.title }}</h1>
-      <time class="recipe-date">{{ .Date | dateFormat "2 Jan 2006" }}</time>
+      <div class="recipe-header-meta">
+        {{ with .Params.status }}<span class="badge badge-{{ . }}">{{ . }}</span>{{ end }}
+        <time class="recipe-date">{{ .Date | dateFormat "2 Jan 2006" }}</time>
+      </div>
     </div>
     {{ if or .Params.style .Params.brewers .Params.recipe_type }}
     <p class="recipe-style">
@@ -153,7 +156,7 @@
         <tr>
           <td>{{ .name }}</td>
           <td>{{ .use }}</td>
-          <td>{{ .time_min }} min</td>
+          <td>{{ if .time_days }}{{ .time_days }} days{{ else }}{{ .time_min }} min{{ end }}</td>
           <td>{{ .amount_g }} g</td>
           <td>{{ .alpha }}%</td>
           <td>{{ .form }}</td>
@@ -199,7 +202,7 @@
         <tr>
           <td>{{ .name }}</td>
           <td>{{ .use }}</td>
-          <td>{{ .time_min }} min</td>
+          <td>{{ if or (eq .use "Boil") (eq .use "Mash") }}{{ if eq .time_min 0 }}Flameout{{ else }}{{ .time_min }} min{{ end }}{{ else }}&mdash;{{ end }}</td>
           <td>{{ with .display_amount }}{{ . }}{{ else }}{{ .amount }}{{ end }}</td>
         </tr>
         {{ end }}
@@ -213,7 +216,7 @@
   {{ $boil_off := 4.0 }}
   {{ with .Params.boil_time_min }}{{ $boil_off = div (mul . 4.0) 60.0 }}{{ end }}
   {{ $total_grain := 0.0 }}
-  {{ range .Params.fermentables }}{{ $total_grain = add $total_grain .amount_kg }}{{ end }}
+  {{ range .Params.fermentables }}{{ if not (or (eq .type "Sugar") (eq .type "Extract") (eq .type "Dry Extract")) }}{{ $total_grain = add $total_grain .amount_kg }}{{ end }}{{ end }}
   {{ $mash_water := mul $total_grain $ratio }}
   {{ $absorption := $total_grain }}
   <section>
@@ -285,7 +288,7 @@
       <tbody>
         {{ range $boil_additions }}
         <tr>
-          <td>{{ .time_min }} min</td>
+          <td>{{ if eq .time_min 0 }}Flameout{{ else }}{{ .time_min }} min{{ end }}</td>
           <td>{{ .name }}</td>
           <td>{{ if .amount_g }}{{ .amount_g }} g{{ else }}{{ with .display_amount }}{{ . }}{{ else }}{{ .amount }}{{ end }}{{ end }}</td>
         </tr>

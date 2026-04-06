@@ -132,6 +132,13 @@ h1 {
   gap: 1rem;
 }
 
+.recipe-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
 .recipe-date {
   font-family: sans-serif;
   font-size: 0.85rem;
@@ -204,6 +211,10 @@ h1 {
 .badge-secondary {
   background: var(--color-muted);
 }
+
+.badge-planning  { background: #7a7a7a; }
+.badge-fermenting { background: #2e7d52; }
+.badge-done      { background: #4a6fa5; }
 
 /* Breadcrumb */
 .breadcrumb {
