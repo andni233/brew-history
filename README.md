@@ -63,7 +63,12 @@ style:
   guide: "BJCP"
   notes: "..."
 notes: "Process notes go here."
+batch_size_l: 23
+pre_ferment_gravity: 1.060
+post_ferment_gravity: 1.012   # adds FG + ABV to statistics once known
 ```
+
+`batch_size_l` is used to compute estimated color (EBC) and bitterness (IBU) from the ingredients list. `pre_ferment_gravity` (OG) and `post_ferment_gravity` (FG) are measured values; ABV is derived from the two.
 
 ### Ingredients
 
