@@ -5,6 +5,7 @@ brewers:
   - "Andreas Nilsson"
   - "Mikael Eriksson"
 batch_size_l: 23
+boil_time_min: 60
 pre_ferment_gravity: 1.070
 description: >-
   Spiritual successor to the original Khennethh.
@@ -43,6 +44,8 @@ yeasts:
     form: "Liquid"
     display_amount: "1 vials"
     attenuation: 76
+    temp_min: 18
+    temp_max: 23
     product_id: "WLP400"
     laboratory: "White Labs"
 

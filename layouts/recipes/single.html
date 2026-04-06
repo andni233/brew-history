@@ -175,6 +175,7 @@
         {{ with .display_amount }}<li>Amount: {{ . }}</li>{{ end }}
         {{ with .attenuation }}<li>Attenuation: {{ . }}%</li>{{ end }}
         {{ with .laboratory }}<li>Lab: {{ . }}</li>{{ end }}
+        {{ if and .temp_min .temp_max }}<li>Ferment: {{ .temp_min }}&ndash;{{ .temp_max }}&deg;C</li>{{ end }}
       </ul>
     </div>
     {{ end }}
@@ -207,6 +208,39 @@
   </section>
   {{ end }}
 
+  {{ if and .Params.fermentables .Params.mash_steps }}
+  {{ $ratio := 3.0 }}
+  {{ $boil_off := 4.0 }}
+  {{ with .Params.boil_time_min }}{{ $boil_off = div (mul . 4.0) 60.0 }}{{ end }}
+  {{ $total_grain := 0.0 }}
+  {{ range .Params.fermentables }}{{ $total_grain = add $total_grain .amount_kg }}{{ end }}
+  {{ $mash_water := mul $total_grain $ratio }}
+  {{ $absorption := $total_grain }}
+  <section>
+    <h2>Water</h2>
+    <div class="water-calcs">
+      <div class="water-calc">
+        <span class="water-calc-label">Mash water</span>
+        <span class="water-calc-value">{{ printf "%.1f" $mash_water }} L</span>
+        <span class="water-calc-note">{{ printf "%.0f" $ratio }} L/kg &middot; {{ printf "%.2f" $total_grain }} kg grain</span>
+      </div>
+      {{ with .Params.batch_size_l }}
+      {{ $sparge := sub (add (add . $absorption) $boil_off) $mash_water }}
+      <div class="water-calc">
+        <span class="water-calc-label">Sparge water</span>
+        <span class="water-calc-value">{{ printf "%.1f" $sparge }} L</span>
+        <span class="water-calc-note">{{ printf "%.1f" $boil_off }} L boil-off{{ with $.Params.boil_time_min }} ({{ . }} min){{ end }}</span>
+      </div>
+      {{ end }}
+      <div class="water-calc">
+        <span class="water-calc-label">Grain absorption</span>
+        <span class="water-calc-value">{{ printf "%.1f" $absorption }} L</span>
+        <span class="water-calc-note">est. loss in grain</span>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
   {{ with .Params.mash_steps }}
   <section>
     <h2>Mash</h2>
@@ -226,6 +260,34 @@
           <td>{{ .type }}</td>
           <td>{{ .step_temp }}&deg;C</td>
           <td>{{ .step_time }} min</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </section>
+  {{ end }}
+
+  {{ $boil_additions := slice }}
+  {{ range .Params.hops }}{{ if eq .use "Boil" }}{{ $boil_additions = $boil_additions | append . }}{{ end }}{{ end }}
+  {{ range .Params.miscs }}{{ if eq .use "Boil" }}{{ $boil_additions = $boil_additions | append . }}{{ end }}{{ end }}
+  {{ if $boil_additions }}
+  {{ $boil_additions = sort $boil_additions "time_min" "desc" }}
+  <section>
+    <h2>Boil Schedule</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Addition</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $boil_additions }}
+        <tr>
+          <td>{{ .time_min }} min</td>
+          <td>{{ .name }}</td>
+          <td>{{ if .amount_g }}{{ .amount_g }} g{{ else }}{{ with .display_amount }}{{ . }}{{ else }}{{ .amount }}{{ end }}{{ end }}</td>
         </tr>
         {{ end }}
       </tbody>
